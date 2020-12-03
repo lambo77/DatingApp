@@ -444,3 +444,6 @@ $RECYCLE.BIN/
 
 #Live appsettings 
 appsettings.json
+
+#certs abnf keys
+ssl
