@@ -4,8 +4,6 @@ import { IfStmt, ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { runInThisContext } from 'vm';
-//import { runInThisContext } from 'vm';
 import { User } from '../_models/user';
 
 
@@ -39,13 +37,13 @@ export class AccountService {
 
   register(model:any){
 
-    return this.http.post(this.baseUrl + 'account/register',model).pipe(
-      map((user:any) =>{
+    return this.http.post<User>(this.baseUrl + 'account/register',model).pipe(
+      map((user:User) =>{
         if(user){
           localStorage.setItem('user',JSON.stringify(user));
           this.currentUserSource.next(user);
         }
-        //will show undxefined if this is commented out 
+        //will show undxefined in cobsole if this is commented out wla
        // return user;
       })
     )
